@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import Yamde from "yamde";
 
-function App() {
+import { ContentExample } from "./ContentExample";
+
+export default function App() {
+  const [isLightMode, setIsLightMode] = useState(true);
+  const [text, setText] = useState(ContentExample);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        <h1><center>Pengedit Markdown</center></h1>
+      </div>
+      <div>
+        <h4><center>Created by: Ananda</center></h4>
+      </div>
+    <div className="btn btn-primary" onClick={() => setIsLightMode(!isLightMode)}>
+      {`${isLightMode ? "Dark" : "Light"} Mode`}
+    </div>
+
+      <Yamde
+        value={text}
+        handler={setText}
+        theme={isLightMode ? "light" : "dark"}
+      />
     </div>
   );
 }
-
-export default App;
